@@ -9,10 +9,21 @@ require('./configs/database.config');
 // ----------------------------------------------------------------------------
 
 // .find() we are always getting array back as a response
-Cat
+
 
 // .findById() we are always getting object back as a response
-Cat
+
 
 // Bonus: Count documents
-Cat
+Cat.find(
+    { //To filter object
+       // name: "Garfield"
+       //modifier object starts with $ gt=greater than
+       age: {$gt: 0},
+       color: {$in: ["pink, black", "orange"]},
+       //friends: { $elemMatch: { $eq: "marco" } },
+       friends: { $all: ["marco"] },
+    }
+)
+.then(cats => cats.forEach(cat => console.log(cat)))
+.catch(error => console.log(error))
